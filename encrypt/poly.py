@@ -29,7 +29,7 @@ def encode(codes):
 	return string
 
 # read plaintext and key form file
-f= open('text', 'r')
+f= open('../text2', 'r')
 plaintext= f.readline().lower()
 key= f.readline()
 

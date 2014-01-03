@@ -2,7 +2,7 @@ from string import ascii_lowercase
 from collections import deque, OrderedDict
 
 # read plaintext and key form file
-f= open('text', 'r')
+f= open('../text', 'r')
 plaintext= f.readline().lower()
 key= ''.join(OrderedDict.fromkeys(f.readline()).keys()) # unique the string
 
