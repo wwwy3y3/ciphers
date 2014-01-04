@@ -35,16 +35,17 @@ class Columns(object):
 		for line in xrange(0,int(self.charPerLine)):
 			string += ''.join(string[line] for string in self.result if len(string)>line)
 		
-		return string[:50]
+		return string[:80]
 		# return repr(self.result)
 
 # read file
-path= '../plaintext/plaintext1_c.txt'
+path= '../plaintext/test.txt'
 f = open(path, 'r')
 plaintext= ''.join(c for c in f.read() if c.isalpha())
-#plaintext= 'dttfsehwttfeahleeleenalcdsoa'
+#plaintext= 'dttfsehwttfeahleeleenalcxdsoax'
+#plaintext= 'dauoisorrdegegfnsoord'
 # put in matrix
-for winsize in xrange(3,120):
+for winsize in xrange(2,7):
 	cols= Columns(winsize, len(plaintext))
 	for char in plaintext:
 		cols.append(char)
