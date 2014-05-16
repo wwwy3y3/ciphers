@@ -40,7 +40,7 @@ class Decrypter(object):
 		return self.plaintext[:50]
 
 # read file
-path= '../decrypt/result_mix3.txt'
+path= '../plaintext/plaintext2_c.txt'
 fr = open(path, 'r')
 ciphertext= ''.join(c for c in fr.read() if c.isalpha())
 fr.close()
