@@ -57,6 +57,7 @@ class Decrypter(object):
 
 	def reset(self):
 		self.plaintext= self.ciphertext
+		return self
 
 	def trans(self, winsize):
 		cols= Trans.Columns(winsize, len(self.plaintext))

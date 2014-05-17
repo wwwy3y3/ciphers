@@ -36,36 +36,37 @@ class Encrypter(object):
 		self.plaintext= text
 
 	def reset(self):
-		self.plaintext= self.ciphertext
+		self.ciphertext= self.plaintext
+		return self
 		
 	def trans(self, winsize):
-		cols= Trans.Columns(winsize, len(self.plaintext))
-		for char in self.plaintext:
+		cols= Trans.Columns(winsize, len(self.ciphertext))
+		for char in self.ciphertext:
 			cols.append(char)
 		self.ciphertext= cols.getplain()
 		return self
 		
 	def ceasar(self, shift):
-		mono= Mono.Mono(self.plaintext)
+		mono= Mono.Mono(self.ciphertext)
 		mono.ceasar(shift)
 		self.ciphertext= mono.ciphertext
 		return self
 
 	def keyword(self, keyword):
-		mono= Mono.Mono(self.plaintext)
+		mono= Mono.Mono(self.ciphertext)
 		mono.keyword(keyword)
 		self.ciphertext= mono.ciphertext
 		return self
 
 	def mapping(self, hashing):
 		string= ''
-		for ch in self.plaintext:
+		for ch in self.ciphertext:
 			string += hashing[ch]
 		self.ciphertext= string
 		return self
 
 	def poly(self, key):
-		poly= Poly.Poly(self.plaintext, uniqueStr(key));
+		poly= Poly.Poly(self.ciphertext, uniqueStr(key));
 		self.ciphertext= poly.decode()
 		return self
 
