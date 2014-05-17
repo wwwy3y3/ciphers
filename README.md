@@ -16,6 +16,15 @@ encrypter= cc.Encrypter('abcdef')
 # chain of encryption
 # do transposition in three window size and then ceasar cipher shift 4 chars
 print encrypter.trans(3).ceasar(4)
+
+
+# encrypt example2
+en= cc.Encrypter('ilovepythonjustlikeilovemymom')
+print en.poly('snakekesn').trans(4) # output 'bjsvwerxzitdlcrpmgypwaguxenpp'
+
+# decrypt what we just encrypt!!
+de= cc.Decrypter('bjsvwerxzitdlcrpmgypwaguxenpp')
+print de.trans(4).poly('snakekesn') #output 'ilovepythonjustlikeilovemymom'
 ```
 
 # api overview
