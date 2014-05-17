@@ -92,5 +92,8 @@ encrypter.reset().poly('keyword')
 encrypter.reset().trans(3)
 ```
 
+# .Decrypter(iteratable text)
+## apis are as same as `Encrypter` above, only difference is it's doing decryption
+
 # licence
 MIT
