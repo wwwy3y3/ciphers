@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name='classical_ciphers',
-    version='0.1.0',
+    version='0.1.1',
     author='wwwy3y3',
     author_email='wwwy3y3@gmail.com',
     packages=['classical_ciphers'],
