@@ -1,1 +1,6 @@
-hw for my cipher lesson
+## goal
+help you learn Classical cipher more efficient
+
+NOTICE it's not for production!!
+
+## api

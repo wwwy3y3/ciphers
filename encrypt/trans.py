@@ -13,7 +13,7 @@ class Columns(object):
 
 	def append(self, char):
 		if not char.isalpha():
-			return
+			print '[WARNING] non-alphabet char exist in text, notice poly and mono will cut off every non-alphabetic char'
 
 		result= self.result
 		now= len(result)-1
@@ -48,7 +48,7 @@ if __name__ == "__main__":
 	nkc
 	fi
 	'''
-	plaintext= 'abc def ghi jkl mon p'
+	plaintext= 'abc defg'
 	#plaintext= 'dttfsehwttfeahleeleenalcxdsoax'
 	#plaintext= 'dauoisorrdegegfnsoord'
 	# put in matrix

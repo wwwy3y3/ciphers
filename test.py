@@ -12,9 +12,9 @@ fw = open('test2.txt', 'w+')
 
 # prime then trans
 decrypter= decrypt.Decrypter('fsferxoupqxdilsmzbvj')
-encrypter= encrypt.Encrypter('xyz')
+encrypter= encrypt.Encrypter('abcdef123')
 #decrypter.keyword('zero').trans(67)
 decrypter.poly('snakekesn')
-encrypter.ceasar(3)
+encrypter.trans(3)
 print decrypter.output()
 print encrypter.output()

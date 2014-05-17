@@ -1,5 +1,6 @@
 import mono as Mono
 import poly as Poly
+import trans as Trans
 from string import ascii_lowercase
 from collections import Counter,OrderedDict
 from itertools import izip,permutations
@@ -36,14 +37,14 @@ class Encrypter(object):
 
 	def reset(self):
 		self.plaintext= self.ciphertext
-		'''
+		
 	def trans(self, winsize):
 		cols= Trans.Columns(winsize, len(self.plaintext))
 		for char in self.plaintext:
 			cols.append(char)
-		self.plaintext= cols.getplain()
+		self.ciphertext= cols.getplain()
 		return self
-		'''
+		
 	def ceasar(self, shift):
 		mono= Mono.Mono(self.plaintext)
 		mono.ceasar(shift)
