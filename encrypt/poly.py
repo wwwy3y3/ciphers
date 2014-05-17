@@ -35,19 +35,17 @@ def encode(codes):
 		string += char(code)
 	return string
 
-# read plaintext and key form file
-#f= open('../text2', 'r')
-plaintext= 'meet me at elephant lake'.lower()
-key= 'snakeke'
+class Poly(object):
+	"""poly decrypt"""
+	def __init__(self, plaintext, key):
+		self.plaintext = plaintext
+		self.key= key;
 
-# transter key, plaintext to codes
-key_codes= [code(x) for x in uniqueStr(key)]
-p_codes= [code(x) for x in plaintext if x.isalpha()]
+	def decode(self):
+		# transter key, plaintext to codes
+		key_codes= [code(x) for x in self.key]
+		p_codes= [code(x) for x in self.plaintext if x.isalpha()]
 
-
-# cipher codes
-c_codes= [x for x in addUp(key_codes, p_codes)]
-print c_codes
-# traster plaintext code back to ciphertext 
-cipherText= encode(c_codes)
-print cipherText
+		# cipher codes
+		c_codes= [x for x in addUp(key_codes, p_codes)]
+		return encode(c_codes)

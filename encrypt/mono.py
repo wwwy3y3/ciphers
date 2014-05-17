@@ -1,44 +1,79 @@
 from string import ascii_lowercase
-from collections import deque, OrderedDict
+from itertools import izip
 
-# read plaintext and key form file
-f= open('../text', 'r')
-plaintext= f.readline().lower()
-key= ''.join(OrderedDict.fromkeys(f.readline()).keys()) # unique the string
+# three ways- 
+#	ceasar
+#	keyword
+#	prime
 
-
-# init a fillList, from a-z
-#fillList= map(chr, range(97, 123))
-
-# init a table dict, keys from a-z
-table= OrderedDict((el,0) for el in ascii_lowercase)
-
-# concat key and alphabets
-fillList= deque()
-for char in key:
-	fillList.append(char)
-
-# delete chars from list
-chars= []
-for char in ascii_lowercase:
-	if char not in key: # if char not appear in key
-		chars.append(char)
-
-# fill the chars
-for char in chars:
-	fillList.append(char)
-
-# fill the table
-for x in table:
-	table[x]= fillList.popleft()
-
-# encrypt the plaintext
-# if char is alpha, then map the table, print it
-# else just print it
-pr= ''
-for char in plaintext:
-	if char.isalpha():
-		pr+=table[char]
+def code(char):
+	if not char.isalpha():
+		return char
 	else:
-		pr+=char
-print pr
+		return ord(char)-97
+
+def char(code):
+	if not isinstance( code, int ):
+		return code
+	else:
+		return chr(code+97)
+
+def rshift(char, shift):
+	newcode= code(char)+shift
+	if newcode >=26:
+		newcode= newcode %26
+	return newcode
+
+def uniqueStr(key):
+	uniqueKey= ''
+	for ch in key:
+		if ch not in uniqueKey:
+			uniqueKey += ch
+	return uniqueKey
+
+def reverseTablegen(key):
+	# unique key
+	uniqueKey= uniqueStr(key)
+
+	# make mapping string
+	for ch in ascii_lowercase:
+		if ch not in uniqueKey:
+			uniqueKey += ch
+	#print uniqueKey
+
+	# make table
+	table= {}
+	for item,key in izip(ascii_lowercase, uniqueKey):
+		table[item]= key
+	return table
+
+class  Mono(object):
+	"""Monoalphabetic decryptor"""
+	def __init__(self,plaintext):
+		self.plaintext= plaintext
+
+	def ceasar(self, shift):
+		shift= shift%26
+		self.ciphertext= ''
+		for ch in self.plaintext:
+			newcode= rshift(ch, shift)
+			self.ciphertext += char(newcode)
+
+	def mapping(self, hashing):
+		self.ciphertext= ''
+		for ch in self.plaintext:
+			self.ciphertext += hashing[ch]
+
+	def keyword(self, keyword):
+		self.mapping(reverseTablegen(keyword))
+			
+if __name__ == '__main__':
+	mono= Mono('abc')
+	mono.ceasar(29)
+	print mono.ciphertext
+
+	mono= Mono('abcdef')
+	mono.keyword('xyzxyz')
+	print mono.ciphertext
+
+
